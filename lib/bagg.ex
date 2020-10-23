@@ -1,10 +1,10 @@
 defmodule Bagg do
   alias Bagg.{Aggday, Datapoint}
 
-  @valid_aggdays for {name, 1} <- Aggday.__info__(:functions), do: name
+  @valid_aggdays for {name, 1} <- Aggday.__info__(:functions), do: Atom.to_string(name)
 
   @type aggregate_opt() ::
-          {:aggday, atom()}
+          {:aggday, atom() | String.t()}
           | {:kyoom, boolean()}
           | {:odom, boolean()}
 
@@ -29,7 +29,7 @@ defmodule Bagg do
     aggregate(datapoints,
       odom: odom,
       kyoom: kyoom,
-      aggday: String.to_existing_atom(aggday)
+      aggday: aggday
     )
   end
 
@@ -44,7 +44,7 @@ defmodule Bagg do
   def aggregate(data, opts \\ []) do
     kyoom = Keyword.get(opts, :kyoom, false)
     odom = Keyword.get(opts, :odom, false)
-    aggday = Keyword.get(opts, :aggday, if(kyoom, do: :sum, else: :last))
+    aggday = to_string(Keyword.get(opts, :aggday, if(kyoom, do: :sum, else: :last)))
 
     cond do
       Enum.empty?(data) ->
@@ -54,6 +54,8 @@ defmodule Bagg do
         {:error, {:invalid_aggday, aggday}}
 
       true ->
+        aggday = String.to_existing_atom(aggday)
+
         data = if odom, do: odomify(data), else: data
 
         data =
