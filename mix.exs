@@ -22,7 +22,7 @@ defmodule Bagg.MixProject do
       {:timex, "~> 3.6.2"},
       {:jason, "~> 1.2"},
 
-      {:credo, "~> 1.4.0", only: [:dev], runtime: false},
+      {:credo, "~> 1.5.0", only: [:dev], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
