@@ -4,7 +4,7 @@ defmodule Bagg.MixProject do
   def project do
     [
       app: :bagg,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -19,7 +19,7 @@ defmodule Bagg.MixProject do
 
   defp deps do
     [
-      {:timex, "~> 3.6.2"},
+      {:timex, "~> 3.7.3"},
       {:jason, "~> 1.2"},
 
       {:credo, "~> 1.5.0", only: [:dev], runtime: false},
