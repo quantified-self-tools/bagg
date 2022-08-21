@@ -11,7 +11,7 @@ defmodule Bagg do
   @type aggregate_error() :: {:invalid_aggday, any()} | :no_datapoints
 
   @spec aggregate_goal(map()) ::
-          {:ok, [%Datapoint{}]}
+          {:ok, [Datapoint.t()]}
           | {:error, aggregate_error()}
 
   def aggregate_goal(%{
@@ -37,8 +37,8 @@ defmodule Bagg do
     {:error, :no_datapoints}
   end
 
-  @spec aggregate([%Datapoint{}], [aggregate_opt()]) ::
-          {:ok, [%Datapoint{}]}
+  @spec aggregate([Datapoint.t()], [aggregate_opt()]) ::
+          {:ok, [Datapoint.t()]}
           | {:error, aggregate_error()}
 
   def aggregate(data, opts \\ []) do
