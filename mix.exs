@@ -20,7 +20,6 @@ defmodule Bagg.MixProject do
   defp deps do
     [
       {:timex, "~> 3.7.3"},
-      {:jason, "~> 1.2"},
 
       {:credo, "~> 1.7.15", only: [:dev], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
