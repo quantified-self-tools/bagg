@@ -5,7 +5,7 @@ defmodule Bagg.MixProject do
     [
       app: :bagg,
       version: "0.1.1",
-      elixir: "~> 1.9",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]

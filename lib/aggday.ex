@@ -71,7 +71,7 @@ defmodule Bagg.Aggday do
     summed * (summed + 1) / 2
   end
 
-  def square(x), do: :math.pow(sum(x), 2)
+  def square(x), do: sum(x) ** 2
 
   def clocky(x) do
     x
