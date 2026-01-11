@@ -33,11 +33,18 @@ defmodule Bagg.Aggday do
   end
 
   def mode(x) do
-    {mode, _} =
-      Enum.group_by(x, & &1)
-      |> Enum.max_by(fn {v, vs} -> {length(vs), -v} end)
+    {_tally, _maxtally, maxitem} =
+      Enum.reduce(x, {%{}, 0, nil}, fn v, {tally, maxtally, maxitem} ->
+        case Map.update(tally, v, 1, &(&1 + 1)) do
+          tally = %{^v => count} when count > maxtally ->
+            {tally, count, v}
 
-    mode
+          tally ->
+            {tally, maxtally, maxitem}
+        end
+      end)
+
+    maxitem
   end
 
   def trimmean(x) do

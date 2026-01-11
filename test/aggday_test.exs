@@ -150,8 +150,13 @@ defmodule Bagg.AggdayTest do
       assert Aggday.mode([1, 2, 2, 3]) == 2
     end
 
-    test "handles ties by returning smallest value" do
+    test "handles ties by returning first to achieve max count" do
+      # 1 reaches count 2 at index 2, 2 reaches count 2 at index 3
       assert Aggday.mode([1, 2, 1, 2, 3]) == 1
+      # 2 reaches count 2 at index 2, 1 reaches count 2 at index 3
+      assert Aggday.mode([1, 2, 2, 1]) == 2
+      # 1 reaches count 2 at index 2, 2 reaches count 2 at index 3
+      assert Aggday.mode([2, 1, 1, 2]) == 1
     end
 
     test "returns single element" do
@@ -163,9 +168,8 @@ defmodule Bagg.AggdayTest do
     end
 
     test "handles all unique values" do
-      # When all unique, returns smallest due to -v tiebreaker
-      result = Aggday.mode([3, 2, 1])
-      assert result == 1
+      # When all unique, returns first element (first to achieve count 1)
+      assert Aggday.mode([3, 2, 1]) == 3
     end
   end
 
