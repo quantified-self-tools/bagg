@@ -338,7 +338,12 @@ defmodule BaggTest do
     test "extracts hashtags from comments" do
       goal = %{
         "datapoints" => [
-          %{"comment" => "#workout morning run", "daystamp" => "20230115", "value" => 5, "timestamp" => 1}
+          %{
+            "comment" => "#workout morning run",
+            "daystamp" => "20230115",
+            "value" => 5,
+            "timestamp" => 1
+          }
         ],
         "odom" => false,
         "kyoom" => false,
